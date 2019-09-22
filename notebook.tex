@@ -1,0 +1,1542 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{spacepython}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{warnings}
+        \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ignore}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \hypertarget{python-for-space-dummies}{%
+\section{Python for space dummies}\label{python-for-space-dummies}}
+
+\begin{itemize}
+\tightlist
+\item
+  Basics: Lists, for loops, importing modules, getting help
+\item
+  Two standard library examples: datetime (handling time), pickle (save
+  to disk)
+\item
+  Numpy (array data type)
+\item
+  Sympy (symbolic calculation)
+\item
+  Matplotlib (plotting)
+\item
+  Scipy (ecosystem of math/science/engineering tools)
+\item
+  Pandas (data handling)
+\item
+  Other useful libraries
+\item
+  Working with CDF files
+\item
+  Space / upper atmosphere models: MSIS, HWM, IRI, IGRF, CHAOS,
+  Tsyganenko, AMPS
+\item
+  Magnetic coordinates
+\item
+  Pytt/Pyrkeland
+\end{itemize}
+
+    \hypertarget{basics}{%
+\subsection{Basics }\label{basics}}
+
+Get Python + most relevant modules + package manager from
+https://www.anaconda.com
+
+This document is written with JuPyter notebook.
+
+Usually I write code in Sublime Text (a text editor,
+https://www.sublimetext.com/3), and run the code using an \emph{ipython}
+terminal
+
+    \hypertarget{python-2-or-3}{%
+\subsubsection{Python 2 or 3?}\label{python-2-or-3}}
+
+Python 3.
+
+There are still some (very few) modules that only work in Python 2, but
+I expect that gradually this will reverse.
+
+The difference between Python 2 and 3 is very small
+
+    \hypertarget{lists}{%
+\subsubsection{Lists}\label{lists}}
+
+To get started, I will show some examples with a built-in container
+type, \emph{list}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{my\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{my\PYZus{}list}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[2, 3, 7, 11]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} They look like vectors/arrays but this is not the case:}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{my\PYZus{}list} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[2, 3, 7, 11, 2, 3, 7, 11]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{my\PYZus{}list} \PY{o}{+} \PY{p}{[}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[2, 3, 7, 11, 100, 101]
+
+    \end{Verbatim}
+
+    Their elements can be anything:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{my\PYZus{}new\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a string}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{another string}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{my\PYZus{}list}\PY{p}{,} \PY{n+nb}{print}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{my\PYZus{}new\PYZus{}list}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 'a string', 'another string', [2, 3, 7, 11], <built-in function print>]
+
+    \end{Verbatim}
+
+    Nice, but pretty useless if we want normal vector/matrix operations. We
+will fix that with the Numpy module
+
+    \hypertarget{for-loops}{%
+\subsubsection{For loops }\label{for-loops}}
+
+Example of for loop syntax in Python, in order to illustrate the
+structuring by indentation
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{my\PYZus{}list}\PY{p}{:}
+            \PY{n}{doubled} \PY{o}{=} \PY{n}{item} \PY{o}{*} \PY{l+m+mi}{2}
+            \PY{n+nb}{print}\PY{p}{(} \PY{n}{doubled} \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+4
+6
+14
+22
+
+    \end{Verbatim}
+
+    \hypertarget{import-modules}{%
+\subsubsection{Import modules}\label{import-modules}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k+kn}{import} \PY{n+nn}{numpy}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{numpy}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1.4142135623730951
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k}{import} \PY{n}{sqrt}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1.4142135623730951
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1.4142135623730951
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k}{import} \PY{o}{*}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{rad2deg}\PY{p}{(}\PY{n}{pi}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+180.0
+
+    \end{Verbatim}
+
+    \hypertarget{how-to-get-help}{%
+\subsubsection{How to get help}\label{how-to-get-help}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{k}{def} \PY{n+nf}{my\PYZus{}function}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} This is the doc\PYZhy{}string for my\PYZus{}function}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    It returns pi }
+         \PY{l+s+sd}{    ¯\PYZbs{}\PYZus{}(ツ)\PYZus{}/¯}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{pi}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{help}\PY{p}{(}\PY{n}{my\PYZus{}function}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Help on function my\_function in module \_\_main\_\_:
+
+my\_function(x)
+    This is the doc-string for my\_function
+    
+    It returns pi 
+    ¯\textbackslash{}\_(ツ)\_/¯
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} in ipython, this command prints the docstring:}
+         my\PYZus{}function\PY{o}{?}
+         
+         \PY{c+c1}{\PYZsh{} and this command prints the source code:}
+         my\PYZus{}function\PY{o}{??}
+\end{Verbatim}
+
+
+    \hypertarget{two-standard-library-modules}{%
+\subsubsection{Two standard library
+modules}\label{two-standard-library-modules}}
+
+\begin{itemize}
+\tightlist
+\item
+  datetime - for time handling 
+\item
+  pickle - for saving to disk
+\end{itemize}
+
+    \hypertarget{datetime}{%
+\subsubsection{Datetime}\label{datetime}}
+
+Standard library module for handling time
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{k+kn}{from} \PY{n+nn}{datetime} \PY{k}{import} \PY{n}{datetime}
+         
+         \PY{n}{bcss\PYZus{}kickoff} \PY{o}{=} \PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2013}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+         \PY{n}{time\PYZus{}since\PYZus{}kickoff} \PY{o}{=} \PY{n}{datetime}\PY{o}{.}\PY{n}{now}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{bcss\PYZus{}kickoff}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{It is }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ seconds since BCSS kickoff}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} 
+               \PY{n+nb}{int}\PY{p}{(}\PY{n}{time\PYZus{}since\PYZus{}kickoff}\PY{o}{.}\PY{n}{total\PYZus{}seconds}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{On }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{bcss\PYZus{}kickoff}\PY{o}{.}\PY{n}{date}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{time\PYZus{}since\PYZus{}kickoff}\PY{p}{)} 
+               \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ we will be twice as old as we are now}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+It is 198292420 seconds since BCSS kickoff
+On 2025-09-30 we will be twice as old as we are now
+
+    \end{Verbatim}
+
+    \hypertarget{pickle}{%
+\subsubsection{Pickle}\label{pickle}}
+
+Standard library module for saving to disk
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k+kn}{import} \PY{n+nn}{pickle}
+         
+         \PY{c+c1}{\PYZsh{} save a string to a file:}
+         \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A string that is saved in a file}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{my\PYZus{}pickle\PYZus{}file.p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{file\PYZus{}content} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{my\PYZus{}pickle\PYZus{}file.p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{file\PYZus{}content}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+A string that is saved in a file
+
+    \end{Verbatim}
+
+    Pickle is saved in binary format. Be careful, and dont use for things
+that you will need for a long time
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{class} \PY{n+nc}{Magnifier}\PY{p}{(}\PY{n+nb}{object}\PY{p}{)}\PY{p}{:}
+             \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{:}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x} \PY{o}{=} \PY{n}{x} \PY{o}{*} \PY{l+m+mi}{2}
+         
+             \PY{k}{def} \PY{n+nf}{write}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x}\PY{p}{)}
+                 
+         \PY{n}{b} \PY{o}{=} \PY{n}{Magnifier}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hi }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{b}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{magnified\PYZus{}b.p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+hi hi 
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{class} \PY{n+nc}{Magnifier}\PY{p}{(}\PY{n+nb}{object}\PY{p}{)}\PY{p}{:} 
+             \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{:}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x} \PY{o}{=} \PY{n}{x} \PY{o}{*} \PY{l+m+mi}{4}
+             
+             \PY{k}{def} \PY{n+nf}{write}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Magnifier is now TWICE AS GOOD!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{b} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{magnified\PYZus{}b.p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{b}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{o}{.}\PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Magnifier is now TWICE AS GOOD!
+hi hi 
+
+    \end{Verbatim}
+
+    \hypertarget{numpy}{%
+\subsubsection{Numpy }\label{numpy}}
+
+Numpy is not shipped with Python. You need to download and install it
+(but use anaconda/conda).
+
+It is completely fundamental to all numerial applications. It is used in
+all other modules that are discussed here
+
+\emph{Books:} Guide to Numpy http://web.mit.edu/dvp/Public/numpybook.pdf
+(Travis Oliphant) Scipy and Numpy (google it to find a free copy)
+
+    The most important part of Numpy is the array:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         
+         \PY{c+c1}{\PYZsh{} remember the list:}
+         \PY{n}{my\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{my\PYZus{}list} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} convert the list to a Numpy array:}
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{my\PYZus{}list}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 2, 3, 4, 1, 2, 3, 4]
+[2 4 6 8]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} It has a specific data type:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+int64
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} The data type is automatically changed when needed}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+float64
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{} it is not as flexible as lists (for good reasons)}
+         \PY{k}{try}\PY{p}{:}
+             \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a string}\PY{l+s+s1}{\PYZsq{}}
+         \PY{k}{except}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x[2] = }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{a string}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ did not work}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+x[2] = 'a string' did not work
+
+[1 2 3 4]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{}It can be multi\PYZhy{}dimensional:}
+         \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[1 2]
+ [3 4]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} MULTI\PYZhy{}dimensional (adding 3 empty dimensions)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{ndim}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} the first dimension denotes rows, the second columns:}
+         \PY{n}{x\PYZus{}row} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x\PYZus{}row}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[1 2 3 4]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{x\PYZus{}column} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x\PYZus{}column}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[1]
+ [2]
+ [3]
+ [4]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{\PYZsh{} Example of numpy array \PYZdq{}broadcasting\PYZdq{}:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x\PYZus{}row} \PY{o}{+} \PY{n}{x\PYZus{}column}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[2 3 4 5]
+ [3 4 5 6]
+ [4 5 6 7]
+ [5 6 7 8]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} define 3 coordinate arrays (10 elements in each)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} combine to 10 3D vectors:}
+         \PY{n}{r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{r}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(3, 10)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} print single element of r:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{r}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.05826540652401235
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} print single row:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{r}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0.47947988 0.41797065 0.39095365 0.6604869  0.64901782 0.01312727
+ 0.65556763 0.87494596 0.21994291 0.05826541]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{c+c1}{\PYZsh{} the means of all columns:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0.48085679 0.72672689 0.5566112  0.43242048 0.46950691 0.55639486
+ 0.7943157  0.37082681 0.393878   0.25289113]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{} the lengths of all columns:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)} \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0.96552471 1.32473776 1.07400757 0.91561962 0.9355609  1.17872637
+ 1.39682648 0.89739116 0.74073111 0.53080091]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{c+c1}{\PYZsh{} normalize the vectors:}
+         \PY{n}{r} \PY{o}{=} \PY{n}{r} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} check that it worked:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{\PYZsh{} Define a rotation matrix (90 degree rotation about z axis):}
+         \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Apply it to the vectors using the dot function:}
+         \PY{n}{r\PYZus{}rotated} \PY{o}{=} \PY{n}{R}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{r}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{sympy}{%
+\subsubsection{Sympy }\label{sympy}}
+
+Sympy is used for symbolic mathematics.
+
+\emph{Resources:} Book: Instant Sympy Starter https://docs.sympy.org
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{k+kn}{import} \PY{n+nn}{sympy} \PY{k}{as} \PY{n+nn}{sp}
+         \PY{n}{sp}\PY{o}{.}\PY{n}{init\PYZus{}printing}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} this line is to get nicely formatted output}
+         
+         \PY{n}{x} \PY{o}{=} \PY{n}{sp}\PY{o}{.}\PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         
+         \PY{n}{sp}\PY{o}{.}\PY{n}{integrate}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{sp}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}36}]:}
+    
+    $$\frac{\log{\left (\cos{\left (x \right )} - 1 \right )}}{4} - \frac{\log{\left (\cos{\left (x \right )} + 1 \right )}}{4} + \frac{\cos{\left (x \right )}}{2 \cos^{2}{\left (x \right )} - 2}$$
+
+    
+
+    \hypertarget{matplotlib}{%
+\subsubsection{Matplotlib }\label{matplotlib}}
+
+Matplotlib is used for plotting.
+
+The only sensible way to learn matplotlib is by examples:
+https://matplotlib.org/gallery/index.html Stackoverflow has
+\textasciitilde{}100 000 posts about matplotlib
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ax} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+         
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{cos(x)\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{frameon} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{theta\PYZdl{} [radians]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_53_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{scipy}{%
+\subsubsection{SciPy }\label{scipy}}
+
+Numpy provides the array class, but it is somewhat limited. SciPy is
+kind of a Numpy expansion, a huge library of scientific software:
+Optimization, linear algebra, integration, interpolation, special
+functions, FFT, signal and image processing, ODE solvers, \ldots{}
+
+\emph{Resources:} Numpy and Scipy (book) Documentation:
+https://docs.scipy.org/doc/scipy/reference/ There are annual SciPy
+conferences
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{special} \PY{k}{import} \PY{n}{sph\PYZus{}harm}
+         
+         \PY{c+c1}{\PYZsh{} make a grid of colatitude and longitude:}
+         \PY{n}{colat}\PY{p}{,} \PY{n}{lon} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{meshgrid}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{l+m+mi}{180}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{p}{,} \PY{l+m+mi}{360}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} calculate spherical harmonics of degree 60 and order 40 at grid points: }
+         \PY{n}{y} \PY{o}{=} \PY{n}{sph\PYZus{}harm}\PY{p}{(}\PY{l+m+mi}{40}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{,} \PY{n}{lon}\PY{p}{,} \PY{n}{colat}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{c+c1}{\PYZsh{} plot the result on a globe using basemap:}
+         \PY{k+kn}{from} \PY{n+nn}{mpl\PYZus{}toolkits}\PY{n+nn}{.}\PY{n+nn}{basemap} \PY{k}{import} \PY{n}{Basemap}
+         \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+         
+         \PY{n}{m} \PY{o}{=} \PY{n}{Basemap}\PY{p}{(}\PY{n}{projection} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ortho}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{lon\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{lat\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{30}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{ax}\PY{p}{)}
+         \PY{n}{c} \PY{o}{=} \PY{n}{m}\PY{o}{.}\PY{n}{contourf}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{rad2deg}\PY{p}{(}\PY{n}{lon}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{90} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{rad2deg}\PY{p}{(}\PY{n}{colat}\PY{p}{)}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{cm}\PY{o}{.}\PY{n}{bwr}\PY{p}{,}
+                        \PY{n}{levels} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{22}\PY{p}{)}\PY{p}{,} \PY{n}{latlon} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{c}\PY{p}{)}
+         \PY{n}{m}\PY{o}{.}\PY{n}{drawparallels}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{r\PYZus{}}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{60}\PY{p}{:}\PY{l+m+mi}{61}\PY{p}{:}\PY{l+m+mi}{30}\PY{p}{]}\PY{p}{)}
+         \PY{n}{m}\PY{o}{.}\PY{n}{drawmeridians}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{r\PYZus{}}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{180}\PY{p}{:}\PY{l+m+mi}{180}\PY{p}{:}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_56_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{c+c1}{\PYZsh{} Scipy can also be used to read and write Matlab files:}
+         \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{io}\PY{n+nn}{.}\PY{n+nn}{matlab} \PY{k}{import} \PY{n}{loadmat}\PY{p}{,} \PY{n}{savemat}
+         
+         \PY{c+c1}{\PYZsh{} and read IDL files:}
+         \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{io}\PY{n+nn}{.}\PY{n+nn}{idl} \PY{k}{import} \PY{n}{readsav}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{c+c1}{\PYZsh{} Scipy also provides access to BLAS and LAPACK functions:}
+         \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{linalg} \PY{k}{import} \PY{n}{blas}
+         \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{linalg} \PY{k}{import} \PY{n}{lapack}
+         
+         \PY{c+c1}{\PYZsh{} example: calculating c * A.T dot A, when c is a scalar and A is a complex matrix}
+         \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{1}\PY{n}{j}
+         \PY{n}{ATA1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{triu}\PY{p}{(} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{A}\PY{p}{)}     \PY{p}{)}          
+         \PY{n}{ATA2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{triu}\PY{p}{(} \PY{n}{blas}\PY{o}{.}\PY{n}{csyrk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{n}{trans} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)} \PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} make sure that the results are (almost) equal:}
+         \PY{k}{assert} \PY{n}{np}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(} \PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{ATA1} \PY{o}{\PYZhy{}} \PY{n}{ATA2}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{0} \PY{p}{,} \PY{n}{atol} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}3}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} look at the time difference }
+         \PY{o}{\PYZpc{}}\PY{k}{timeit} 4 * A.T.dot(A) 
+         \PY{o}{\PYZpc{}}\PY{k}{timeit} blas.csyrk(4, A, trans = 1) 
+         \PY{c+c1}{\PYZsh{} (when the number of rows in A increases, the difference gets smaller)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+4.91 ms ± 294 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+2.35 ms ± 123 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+    \end{Verbatim}
+
+    \hypertarget{pandas}{%
+\subsubsection{Pandas }\label{pandas}}
+
+Pandas is a data analysis library. It is extremely useful for reading,
+processing, combining data
+
+\emph{Resources:} Python for Data Analysis (book - I have a copy)
+Documentation: https://pandas.pydata.org/pandas-docs/stable/
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         
+         \PY{c+c1}{\PYZsh{} read a file downloaded from supermag, and store it in a pandas DataFrame:}
+         \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{supermagfile.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index\PYZus{}col} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{parse\PYZus{}dates} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{data}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date (UTC)}\PY{l+s+s1}{\PYZsq{}} 
+         
+         \PY{n}{data}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SML}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SMU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} in the background, pandas uses matplotlib to do this}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}42}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0xb211ca860>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_60_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{c+c1}{\PYZsh{} resample to 1 Hz (from 1 min resolution) and interpolate in one line:}
+         \PY{n}{hdsml} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SML}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{resample}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1S}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{interpolate}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} easily combine different time series as long as there are matching indices}
+         \PY{n}{smu} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SMU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} combine smu (1 min) and hdsml (1 Hz)}
+         \PY{n}{ratio} \PY{o}{=} \PY{n}{smu} \PY{o}{/} \PY{n}{hdsml}
+         
+         \PY{c+c1}{\PYZsh{} there will be NaNs where hdsml has data and smu does not}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s1}{ of the elements in ratio are NaNs (59/60 = }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}}
+               \PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{ratio}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{ratio}\PY{p}{)} \PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{59}\PY{o}{/}\PY{l+m+mi}{60}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+98.3\% of the elements in ratio are NaNs (59/60 = 0.983)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{c+c1}{\PYZsh{} easily select a subset of one day:}
+         \PY{n}{hdsml}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2001\PYZhy{}11\PYZhy{}24}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_62_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{c+c1}{\PYZsh{} analyze how SML amd SMU covary:}
+         \PY{c+c1}{\PYZsh{} pd.qcut(data[\PYZsq{}SMU\PYZsq{}], 20) creates 20 groups / bins, defined by}
+         \PY{c+c1}{\PYZsh{} SMU quantiles. In each of these bins, we calculate the median of SML}
+         \PY{n}{sml\PYZus{}vs\PYZus{}smu} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SML}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{groupby}\PY{p}{(} \PY{n}{pd}\PY{o}{.}\PY{n}{qcut}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SMU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)} \PY{p}{)}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} print the first and last elements of the index}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{sml\PYZus{}vs\PYZus{}smu}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{sml\PYZus{}vs\PYZus{}smu}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} make an array of the mid points of the smu intervals:}
+         \PY{n}{smu} \PY{o}{=} \PY{p}{[}\PY{n}{x}\PY{o}{.}\PY{n}{mid} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{sml\PYZus{}vs\PYZus{}smu}\PY{o}{.}\PY{n}{index}\PY{p}{]}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{semilogx}\PY{p}{(}\PY{n}{smu}\PY{p}{,} \PY{n}{sml\PYZus{}vs\PYZus{}smu}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SMU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SML}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(-14.001, 20.0] (351.05, 1544.0]
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_63_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{other-useful-libraries}{%
+\subsubsection{Other useful libraries}\label{other-useful-libraries}}
+
+Dask \(-\) For big data / parallel computing (https://dask.org/)
+scikit-learn / sklearn: https://scikit-learn.org/stable/ \(-\) for
+machine learning ++ tensorflow \(-\) also for machine learning,
+developed by Google (https://www.tensorflow.org/) seaborn \(-\) for
+making nice-looking plots quickly, built on matplotlib
+(https://seaborn.pydata.org/) PIL \(-\) for image processing (Scipy also
+has many useful image processing tools) lmfit \(-\) For non-linear least
+squares with constraints (https://lmfit.github.io/lmfit-py/)
+
+    \hypertarget{space-physics-modules}{%
+\subsubsection{Space physics modules }\label{space-physics-modules}}
+
+There's a ton of modules that have specific uses in space physics. A
+nice overview is provided by \emph{Burrell, A. G., Halford, A.,
+Klenzing, J., Stoneback, R. A., Morley, S. K., Annex, A. M., et al. (
+2018). Snakes on a spaceship---An overview of Python in heliophysics.
+Journal of Geophysical Research: Space Physics, 123, 10,384-- 10,402.
+https://doi.org/10.1029/2018JA025877}
+
+The article also presents a framework for community development, similar
+to astronomy's AstroPy
+
+I will present examples from different libraries providing access to
+models originally written in fortran, coordinate conversion, and for
+working with CDF (Common Data Format) files
+
+Finally, I will show some examples from Pytt aka Pyrkeland
+
+None of these modules are included with anaconda. You need to download
+and install, and this can be tricky (especially on Windows)
+
+    \hypertarget{cdf-common-data-format}{%
+\subsubsection{CDF (Common Data Format)}\label{cdf-common-data-format}}
+
+File format used extensively in space physics (binary)
+
+\emph{SpacePy}, \emph{pysatCDF}, and \emph{CDFlib} are all able to load
+CDF files. I recommend CDFlib (https://github.com/MAVENSDC/cdflib). Here
+is an example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{k+kn}{import} \PY{n+nn}{cdflib}
+         
+         \PY{c+c1}{\PYZsh{} load a datafile containing 50Hz magnetic field measurements from Swarm}
+         \PY{c+c1}{\PYZsh{} downloaded from swarm\PYZhy{}diss.eo.esa.int}
+         \PY{n}{swarm\PYZus{}B\PYZus{}data} \PY{o}{=} \PY{n}{cdflib}\PY{o}{.}\PY{n}{CDF}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./SW\PYZus{}OPER\PYZus{}MAGA\PYZus{}HR\PYZus{}1B\PYZus{}20150328T000000\PYZus{}20150328T235959\PYZus{}0505\PYZus{}MDR\PYZus{}MAG\PYZus{}HR.cdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{B\PYZus{}vectors} \PY{o}{=} \PY{n}{swarm\PYZus{}B\PYZus{}data}\PY{o}{.}\PY{n}{varget}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B\PYZus{}NEC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} (has shape N x 3)}
+         \PY{n}{B\PYZus{}east} \PY{o}{=} \PY{n}{B\PYZus{}vectors}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} eastward component}
+         
+         \PY{c+c1}{\PYZsh{} plot the time derivative (first difference) of the last 1000 elements}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(} \PY{n}{B\PYZus{}east}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1000}\PY{p}{:}\PY{p}{]} \PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} [<matplotlib.lines.Line2D at 0xb219e5470>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_67_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{international-geomagnetic-reference-field-igrf}{%
+\subsubsection{International Geomagnetic Reference Field
+(IGRF)}\label{international-geomagnetic-reference-field-igrf}}
+
+A standard model of Earth's magnetic field.
+
+I have written a pure Python implementation of this, but it \textbf{may}
+be better to use something more public. The Snakes on a Spaceship paper
+mentions \emph{pyglow}. It is fairly easy to install if you follow the
+instructions (https://github.com/timduly4/pyglow)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{k+kn}{import} \PY{n+nn}{pyglow}
+         
+         \PY{c+c1}{\PYZsh{} Parameters:}
+         \PY{n}{colat} \PY{o}{=} \PY{l+m+mf}{29.776}
+         \PY{n}{lon}   \PY{o}{=} \PY{l+m+mf}{5.33}
+         \PY{n}{isv}   \PY{o}{=} \PY{l+m+mi}{0} \PY{c+c1}{\PYZsh{} 0 if you want the main field, 1 if you want the secular variation}
+         \PY{n}{itype} \PY{o}{=} \PY{l+m+mi}{2} \PY{c+c1}{\PYZsh{} 1 if input coords are geodetic, 2 if geocentric}
+         \PY{n}{r}     \PY{o}{=} \PY{l+m+mf}{6362.006324680832}
+         \PY{n}{date}  \PY{o}{=} \PY{l+m+mf}{2019.1}
+         
+         \PY{n}{B} \PY{o}{=} \PY{n}{pyglow}\PY{o}{.}\PY{n}{igrf}\PY{o}{.}\PY{n}{igrf12}\PY{p}{(}\PY{n}{isv}\PY{p}{,} \PY{n}{date}\PY{p}{,} \PY{n}{itype}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{colat}\PY{p}{,} \PY{n}{lon}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{north: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ nT, east: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{, vertical: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ nT, total: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ nT}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{B}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+north: 14871.7 nT, east: 313.6, vertical: 48925.3 nT, total: 51136.6 nT
+
+    \end{Verbatim}
+
+    With the igrf12 function the input has to be scalar. To make an array
+version of this, one can use \textbf{np.frompyfunc}, which takes an
+arbitrary function and returns a function that works well with numpy
+arrays
+
+    \hypertarget{chaos-model}{%
+\subsubsection{CHAOS model}\label{chaos-model}}
+
+The DTU main field model. Much more detailed than IGRF. They have
+recently published Python forward code, called \emph{chaosmagpy}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{k+kn}{from} \PY{n+nn}{chaosmagpy} \PY{k}{import} \PY{n}{load\PYZus{}CHAOS\PYZus{}matfile}
+         
+         \PY{n}{chaosmodel} \PY{o}{=} \PY{n}{load\PYZus{}CHAOS\PYZus{}matfile}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./CHAOS\PYZhy{}6\PYZhy{}x8.mat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{mjd2000} \PY{o}{=} \PY{p}{(}\PY{n}{date} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2000}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{365.25} 
+         \PY{n}{B} \PY{o}{=} \PY{n}{chaosmodel}\PY{p}{(}\PY{n}{mjd2000}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{colat}\PY{p}{,} \PY{n}{lon}\PY{p}{)} \PY{c+c1}{\PYZsh{} return components are in r, theta, phi directions}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{north: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ nT, east: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{, vertical: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ nT}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{B}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{B}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{B}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Computing time-dependent internal field up to degree 20.
+Finished in 0.0109999 seconds.
+Computing static internal (i.e. small-scale crustal) field up to degree 85.
+Finished in 0.173342 seconds.
+Computing GSM field up to degree 2.
+Finished in 0.00386203 seconds.
+Computing SM field up to degree 2.
+Finished in 0.298668 seconds.
+north: 14824.6 nT, east: 347.2, vertical: 48976.1 nT
+
+    \end{Verbatim}
+
+    \hypertarget{msis-nrlmsise}{%
+\subsubsection{MSIS / NRLMSISE}\label{msis-nrlmsise}}
+
+Neutral Atmosphere Empirical Model from the surface to lower exosphere -
+describes neutral densities and temperatures above 100 km
+
+pyglow has a wrapper for this model also.
+(https://github.com/timduly4/pyglow)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{c+c1}{\PYZsh{} set some input parameters}
+         \PY{n}{iyd} \PY{o}{=} \PY{l+m+mi}{19170} \PY{c+c1}{\PYZsh{} YYDDD (year \PYZhy{} day\PYZus{}of\PYZus{}year \PYZhy{} 19 June 2019 in this case)}
+         \PY{n}{sec} \PY{o}{=} \PY{l+m+mi}{10} \PY{o}{*} \PY{l+m+mi}{60}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{1} \PY{c+c1}{\PYZsh{} 10 UT in seconds}
+         \PY{n}{alt} \PY{o}{=} \PY{l+m+mi}{100} \PY{c+c1}{\PYZsh{} altitude in km}
+         \PY{n}{lat}\PY{p}{,} \PY{n}{lon} \PY{o}{=} \PY{l+m+mf}{60.389}\PY{p}{,} \PY{l+m+mf}{5.33}
+         \PY{n}{stl} \PY{o}{=} \PY{n}{sec}\PY{o}{/}\PY{l+m+mi}{3600} \PY{o}{+} \PY{n}{lon}\PY{o}{/}\PY{l+m+mi}{15} \PY{c+c1}{\PYZsh{} local apparent solar time (hrs) \PYZhy{} approximately}
+         \PY{n}{f107a} \PY{o}{=} \PY{l+m+mi}{70} \PY{c+c1}{\PYZsh{} 80 day average f107 index centered on the day}
+         \PY{n}{f107} \PY{o}{=} \PY{l+m+mi}{70}  \PY{c+c1}{\PYZsh{} f107 index yesterday}
+         \PY{n}{ap}   \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{67}\PY{p}{]}\PY{o}{*}\PY{l+m+mi}{7}  \PY{c+c1}{\PYZsh{} ap index \PYZhy{} daily + a set of previous values}
+         \PY{n}{mass} \PY{o}{=} \PY{l+m+mi}{48}  \PY{c+c1}{\PYZsh{} not sure about this, but 48 is supposed to give all outputs}
+         
+         \PY{n}{d}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{pyglow}\PY{o}{.}\PY{n}{msis}\PY{o}{.}\PY{n}{msis00}\PY{p}{(}\PY{n}{iyd}\PY{p}{,}\PY{n}{sec}\PY{p}{,}\PY{n}{alt}\PY{p}{,}\PY{n}{lat}\PY{p}{,}\PY{n}{lon}\PY{p}{,}\PY{n}{stl}\PY{p}{,}\PY{n}{f107a}\PY{p}{,}\PY{n}{f107}\PY{p}{,}\PY{n}{ap}\PY{p}{,}\PY{n}{mass}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{pyglow}\PY{o}{.}\PY{n}{msis}\PY{o}{.}\PY{n}{CONSTITUENTS}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{d}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{size}\PY{p}{)} \PY{o}{!=} \PY{l+m+mi}{5}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{density in cm\PYZdl{}\PYZca{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZhy{}3\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{size} \PY{o}{=} \PY{l+m+mi}{14}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temperature at }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ km is }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ K}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{alt}\PY{p}{,} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Temperature at 100 km is 1027.3 K
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_74_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{hwm-horizontal-wind-model}{%
+\subsubsection{HWM (Horizontal Wind
+Model)}\label{hwm-horizontal-wind-model}}
+
+Empirical model of horizontal neutral winds in the thermosphere. Python
+wrapper is included in \emph{pyglow}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{k+kn}{from} \PY{n+nn}{pyglow} \PY{k}{import} \PY{n}{hwm}
+         
+         \PY{c+c1}{\PYZsh{} Importing hwm works, but it crashes when I run it}
+\end{Verbatim}
+
+
+    \hypertarget{iri-international-reference-ionosphere}{%
+\subsubsection{IRI (International Reference
+Ionosphere)}\label{iri-international-reference-ionosphere}}
+
+Empirical model of the ionosphere. \emph{pyglow} provides a Python
+wrapper (https://github.com/timduly4/pyglow)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{alts} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{100.}\PY{p}{,} \PY{l+m+mf}{500.}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)}
+         \PY{n}{dn} \PY{o}{=} \PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2015}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{19}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{)}
+         
+         \PY{n}{ne} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{alt} \PY{o+ow}{in} \PY{n}{alts}\PY{p}{:} \PY{c+c1}{\PYZsh{} loop through altitudes}
+             \PY{n}{pt} \PY{o}{=} \PY{n}{pyglow}\PY{o}{.}\PY{n}{Point}\PY{p}{(}\PY{n}{dn}\PY{p}{,} \PY{n}{lat}\PY{p}{,} \PY{n}{lon}\PY{p}{,} \PY{n}{alt}\PY{p}{)}
+             \PY{n}{pt}\PY{o}{.}\PY{n}{run\PYZus{}iri}\PY{p}{(}\PY{p}{)} 
+             \PY{n}{ne}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{pt}\PY{o}{.}\PY{n}{ne}\PY{p}{)} \PY{c+c1}{\PYZsh{} append() is a member function in the list class}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{semilogx}\PY{p}{(}\PY{n}{ne}\PY{p}{,} \PY{n}{alts}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}n\PYZus{}e\PYZdl{} [cm\PYZdl{}\PYZca{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZhy{}3\PYZcb{}\PYZdl{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{size} \PY{o}{=} \PY{l+m+mi}{14}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Altitude [km]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{size} \PY{o}{=} \PY{l+m+mi}{14}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ UT, lat=}\PY{l+s+si}{\PYZpc{}3.1f}\PY{l+s+s1}{\PYZdl{}\PYZca{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{circ\PYZdl{}, lon=}\PY{l+s+si}{\PYZpc{}3.1f}\PY{l+s+s1}{\PYZdl{}\PYZca{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{circ\PYZdl{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{dn}\PY{p}{)}\PY{p}{,} \PY{n}{lat}\PY{p}{,} \PY{n}{lon}\PY{p}{)}\PY{p}{,} \PY{n}{size} \PY{o}{=} \PY{l+m+mi}{14}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_78_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{tsyganenko-models}{%
+\subsubsection{Tsyganenko models}\label{tsyganenko-models}}
+
+The Tsygnanko models are statistical models of the magnetospheric
+magnetic field, derived from spacecraft measurements
+
+I've seen several wrappers for this as well. Now I'm trying one called
+\emph{geopack} (https://github.com/tsssss/geopack)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{k+kn}{from} \PY{n+nn}{geopack} \PY{k}{import} \PY{n}{geopack}
+         \PY{n}{x\PYZus{}gsm}\PY{p}{,}\PY{n}{y\PYZus{}gsm}\PY{p}{,}\PY{n}{z\PYZus{}gsm} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.5}
+         
+         \PY{c+c1}{\PYZsh{} initialize with universal time (to set dipole tilt I think)}
+         \PY{n}{geopack}\PY{o}{.}\PY{n}{recalc}\PY{p}{(}\PY{l+m+mf}{10.}\PY{p}{)}
+         
+         \PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}\PY{p}{,}\PY{n}{xx}\PY{p}{,}\PY{n}{yy}\PY{p}{,}\PY{n}{zz} \PY{o}{=} \PY{n}{geopack}\PY{o}{.}\PY{n}{trace}\PY{p}{(}\PY{n}{x\PYZus{}gsm}\PY{p}{,} \PY{n}{y\PYZus{}gsm}\PY{p}{,} \PY{n}{z\PYZus{}gsm}\PY{p}{,} \PY{n+nb}{dir}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{rlim}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{r0}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{99999}\PY{p}{,}
+                                        \PY{n}{parmod}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{exname}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t89}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{inname}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{igrf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{maxloop}\PY{o}{=}\PY{l+m+mi}{10000}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} (the parmod variable could contain external conditions)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{xx}\PY{p}{,} \PY{n}{zz}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} plot Eearth}
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Load IGRF coefficients {\ldots}
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_80_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{amps}{%
+\subsubsection{AMPS}\label{amps}}
+
+The Average Magnetic field and Polar current System model
+
+Python forward code: \emph{pyAMPS} (https://github.com/klaundal/pyAMPS)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{k+kn}{import} \PY{n+nn}{pyamps}
+         \PY{n}{m} \PY{o}{=} \PY{n}{pyamps}\PY{o}{.}\PY{n}{AMPS}\PY{p}{(}\PY{l+m+mi}{300}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{23}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)} \PY{c+c1}{\PYZsh{} initialize with SW speed, By, Bz, tilt, F107}
+         \PY{n}{m}\PY{o}{.}\PY{n}{plot\PYZus{}currents}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_82_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{magnetic-coordinates}{%
+\subsubsection{Magnetic coordinates}\label{magnetic-coordinates}}
+
+I will demonstrate apexpy and aacgmv2. Both Apex and AACGM coordinates
+involve tracing of magnetic field lines in the IGRF model, which is
+computationally heavy and not something you should implement yourself
+(although you \emph{could}, using the geopack library and Runge-Kutta
+integrators from Scipy). apexpy is a wrapper for Fortran code written by
+Emmert et al. (2010), and aacgmv2 is a wrapper for C code written by
+Simon Shepherd (2014).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{k+kn}{import} \PY{n+nn}{apexpy}
+         
+         \PY{n}{now} \PY{o}{=} \PY{n}{datetime}\PY{o}{.}\PY{n}{utcnow}\PY{p}{(}\PY{p}{)}
+         \PY{n}{a} \PY{o}{=} \PY{n}{apexpy}\PY{o}{.}\PY{n}{Apex}\PY{p}{(}\PY{n}{date} \PY{o}{=} \PY{n}{now}\PY{p}{,} \PY{n}{refh} \PY{o}{=} \PY{l+m+mi}{110}\PY{p}{)}
+         \PY{n}{mlat}\PY{p}{,} \PY{n}{mlon} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{geo2apex}\PY{p}{(}\PY{n}{lat}\PY{p}{,} \PY{n}{lon}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The current mlat/MLT in Bergen is }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ degrees / }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} 
+               \PY{p}{(}\PY{n}{mlat}\PY{p}{,} \PY{n}{a}\PY{o}{.}\PY{n}{mlon2mlt}\PY{p}{(}\PY{n}{mlon}\PY{p}{,} \PY{n}{now}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} calcualte magnetic circle of latitude which goes through Bergen}
+         \PY{n}{mlons} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{180}\PY{p}{,} \PY{l+m+mi}{180}\PY{p}{,} \PY{l+m+mi}{360}\PY{p}{)}
+         \PY{n}{glat}\PY{p}{,} \PY{n}{glon}\PY{p}{,} \PY{n}{error} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{apex2geo}\PY{p}{(}\PY{n}{mlat}\PY{p}{,} \PY{n}{mlons}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The current mlat/MLT in Bergen is 57.0 degrees / 8.8
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{k+kn}{import} \PY{n+nn}{aacgmv2}
+         
+         \PY{n}{mlat\PYZus{}aacgm}\PY{p}{,} \PY{n}{mlon\PYZus{}aacgm} \PY{o}{=} \PY{n}{aacgmv2}\PY{o}{.}\PY{n}{convert}\PY{p}{(}\PY{n}{lat}\PY{p}{,} \PY{n}{lon}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{now}\PY{p}{,} \PY{n}{a2g} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{glat\PYZus{}aacgm}\PY{p}{,} \PY{n}{glon\PYZus{}aacgm} \PY{o}{=} \PY{n}{aacgmv2}\PY{o}{.}\PY{n}{convert}\PY{p}{(}\PY{n}{mlat\PYZus{}aacgm}\PY{p}{,} \PY{n}{mlons}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{now}\PY{p}{,} \PY{n}{a2g} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{c+c1}{\PYZsh{} plot the latitude circles on a map}
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+         \PY{n}{m} \PY{o}{=} \PY{n}{Basemap}\PY{p}{(}\PY{n}{projection} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ortho}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{lon\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{lat\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{90}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{ax}\PY{p}{)}
+         \PY{n}{m}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{glon}\PY{p}{,} \PY{n}{glat}\PY{p}{,} \PY{n}{latlon} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,} \PY{n}{linewidth} \PY{o}{=} \PY{l+m+mi}{5}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Apex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{m}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{glon\PYZus{}aacgm}\PY{p}{,} \PY{n}{glat\PYZus{}aacgm}\PY{p}{,} \PY{n}{latlon} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,} \PY{n}{linewidth} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AACGM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{m}\PY{o}{.}\PY{n}{drawparallels}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{40}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{,} \PY{l+m+mi}{80}\PY{p}{]}\PY{p}{)}
+         \PY{n}{m}\PY{o}{.}\PY{n}{drawmeridians}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{r\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{360}\PY{p}{:}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{)}
+         \PY{n}{m}\PY{o}{.}\PY{n}{drawcoastlines}\PY{p}{(}\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grey}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{frameon} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{12}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_86_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{other-useful-space-physics-python-projects}{%
+\subsubsection{Other useful space physics Python
+projects}\label{other-useful-space-physics-python-projects}}
+
+\begin{itemize}
+\tightlist
+\item
+  DaViTpy: \textbf{Extensive} module for working with SuperDARN (does
+  not support Python 3) (https://github.com/vtsuperdarn/davitpy)
+\item
+  pyEphem: For calculating position of astronomical bodies
+\item
+  SpacePy: Extensive library which includes CDF handling, coordinate
+  conversion, and tools for working with Space Weather Modeling
+  Framework output
+\item
+  OvationPyme: Python translation of Ovation Prime (I have not been able
+  to run this)
+\item
+  MadrigalWeb: Access data from Madrigal database
+\item
+  viresclient: Download Swarm data and evaluate models (including CHAOS,
+  IGRF, AMPS (I think) \ldots{})
+\end{itemize}
+
+    \hypertarget{pytt-pyrkeland-dipole}{%
+\subsubsection{Pytt / Pyrkeland / dipole}\label{pytt-pyrkeland-dipole}}
+
+Some examples from my own code - Pytt (misc):
+https://github.com/klaundal/pytt (private repository, but I will give
+you access if you want) - dipole: for (extremely fast) calculation of
+dipole tilt angle
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{c+c1}{\PYZsh{} plotting on MLT mlat grid:}
+         \PY{k+kn}{from} \PY{n+nn}{pytt}\PY{n+nn}{.}\PY{n+nn}{plotting} \PY{k}{import} \PY{n}{polarsubplot}
+         
+         \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+         \PY{n}{pax} \PY{o}{=} \PY{n}{polarsubplot}\PY{o}{.}\PY{n}{Polarsubplot}\PY{p}{(}\PY{n}{ax}\PY{p}{,} \PY{n}{linestyle} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grey}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{mlat}\PY{p}{,} \PY{n}{mlt} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{57}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{24} \PY{o}{+} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{pax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{mlat}\PY{p}{,} \PY{n}{mlt}\PY{p}{,} \PY{n}{linewidth} \PY{o}{=} \PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{pax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_89_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{c+c1}{\PYZsh{} dipole tilt angle }
+         \PY{k+kn}{from} \PY{n+nn}{dipole} \PY{k}{import} \PY{n}{dipole\PYZus{}tilt}
+         
+         \PY{c+c1}{\PYZsh{} calculate tilt angle for each time in the SuperMAG }
+         \PY{c+c1}{\PYZsh{} file that was loaded above (called data)}
+         \PY{n}{tilt} \PY{o}{=} \PY{n}{dipole\PYZus{}tilt}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{index}\PY{p}{,} \PY{n}{tilt}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_90_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{c+c1}{\PYZsh{} conversion between geodetic and geocentric coordinates}
+         \PY{c+c1}{\PYZsh{} geodetic takes into account ellipsoid \PYZhy{} this is what is normally used in maps}
+         \PY{k+kn}{from} \PY{n+nn}{pytt}\PY{n+nn}{.}\PY{n+nn}{earth}\PY{n+nn}{.}\PY{n+nn}{geodesy} \PY{k}{import} \PY{n}{geod2geoc}
+         
+         \PY{n}{theta}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{south}\PY{p}{,} \PY{n}{radial} \PY{o}{=} \PY{n}{geod2geoc}\PY{p}{(}\PY{n}{lat}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)} 
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geocentric latitude: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{, geodetic latitude: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+m+mi}{90} \PY{o}{\PYZhy{}} \PY{n}{theta}\PY{p}{,} \PY{n}{lat}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geocentric radius: }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ km, compared to mean Earth radius }\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ km}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{l+m+mf}{6371.2}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{An upward unit vector has radial component }\PY{l+s+si}{\PYZpc{}.7f}\PY{l+s+s1}{ and southward component }\PY{l+s+si}{\PYZpc{}.7f}\PY{l+s+s1}{ in a geocentric system}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{radial}\PY{p}{,} \PY{n}{south}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+geocentric latitude: 60.2, geodetic latitude: 60.4
+geocentric radius: 6362.0 km, compared to mean Earth radius 6371.2 km
+An upward unit vector has radial component 0.9999958 and southward component -0.0028904 in a geocentric system
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{c+c1}{\PYZsh{} use biot savart to evaluate field of line current on sphere}
+         \PY{k+kn}{from} \PY{n+nn}{pytt}\PY{n+nn}{.}\PY{n+nn}{mag}\PY{n+nn}{.}\PY{n+nn}{biot\PYZus{}savart} \PY{k}{import} \PY{n}{biot\PYZus{}savart}
+         \PY{n}{RE} \PY{o}{=} \PY{l+m+mf}{6371.2} \PY{o}{*} \PY{l+m+mf}{1e3}
+         \PY{n}{current\PYZus{}height} \PY{o}{=} \PY{n}{RE} \PY{o}{+} \PY{l+m+mi}{100} \PY{o}{*} \PY{l+m+mf}{1e3}
+         \PY{n}{amplitude} \PY{o}{=} \PY{l+m+mi}{100} \PY{o}{*} \PY{l+m+mf}{1e3} \PY{c+c1}{\PYZsh{} Amperes}
+         
+         \PY{c+c1}{\PYZsh{} make a grid}
+         \PY{n}{mlatxx}\PY{p}{,} \PY{n}{mltxx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{meshgrid}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{B} \PY{o}{=} \PY{n}{biot\PYZus{}savart}\PY{p}{(}\PY{n}{mlat}\PY{p}{,} \PY{n}{mlt}\PY{p}{,} \PY{n}{mlatxx}\PY{p}{,} \PY{n}{mltxx}\PY{p}{,} \PY{n}{amplitude}\PY{p}{,} \PY{n}{RB} \PY{o}{=} \PY{n}{RE}\PY{p}{,} \PY{n}{RI} \PY{o}{=} \PY{n}{current\PYZus{}height}\PY{p}{)}
+         \PY{n}{B} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{B}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+         \PY{n}{pax} \PY{o}{=} \PY{n}{polarsubplot}\PY{o}{.}\PY{n}{Polarsubplot}\PY{p}{(}\PY{n}{ax}\PY{p}{,} \PY{n}{linestyle} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grey}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{c} \PY{o}{=} \PY{n}{pax}\PY{o}{.}\PY{n}{contourf}\PY{p}{(}\PY{n}{mlatxx}\PY{p}{,} \PY{n}{mltxx}\PY{p}{,} \PY{n}{B} \PY{o}{*} \PY{l+m+mf}{1e9}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{pax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{mlat}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{p}{,} \PY{n}{mlt}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{pax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{mlat}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{mlt}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_92_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{k+kn}{import} \PY{n+nn}{antigravity}
+\end{Verbatim}
+
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.usetex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{k+kc}{False}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xkcd}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_95_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    
+
+    \hypertarget{the-end}{%
+\section{The end}\label{the-end}}
+
+Send me an email to get access to pytt and this notebook on github
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
