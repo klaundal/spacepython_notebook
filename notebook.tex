@@ -320,6 +320,9 @@
   Pytt/Pyrkeland
 \end{itemize}
 
+The code in this notebook is run from top to bottom. Variables are kept
+from one cell to the next
+
     \hypertarget{basics}{%
 \subsection{Basics }\label{basics}}
 
@@ -536,8 +539,8 @@ Standard library module for handling time
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-It is 198292420 seconds since BCSS kickoff
-On 2025-09-30 we will be twice as old as we are now
+It is 206942437 seconds since BCSS kickoff
+On 2026-04-18 we will be twice as old as we are now
 
     \end{Verbatim}
 
@@ -775,7 +778,7 @@ x[2] = 'a string' did not work
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-0.05826540652401235
+0.17723367215571018
 
     \end{Verbatim}
 
@@ -786,8 +789,8 @@ x[2] = 'a string' did not work
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[0.47947988 0.41797065 0.39095365 0.6604869  0.64901782 0.01312727
- 0.65556763 0.87494596 0.21994291 0.05826541]
+[0.16746427 0.69613382 0.64616603 0.70370754 0.87411113 0.28643206
+ 0.62954856 0.34070801 0.76440387 0.17723367]
 
     \end{Verbatim}
 
@@ -798,8 +801,8 @@ x[2] = 'a string' did not work
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[0.48085679 0.72672689 0.5566112  0.43242048 0.46950691 0.55639486
- 0.7943157  0.37082681 0.393878   0.25289113]
+[0.27083968 0.58443984 0.49465782 0.58937145 0.78085972 0.43159322
+ 0.60535117 0.32902065 0.75245329 0.40480425]
 
     \end{Verbatim}
 
@@ -810,8 +813,8 @@ x[2] = 'a string' did not work
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[0.96552471 1.32473776 1.07400757 0.91561962 0.9355609  1.17872637
- 1.39682648 0.89739116 0.74073111 0.53080091]
+[0.61824921 1.12603138 1.04108543 1.15598768 1.38115763 0.76988223
+ 1.06833641 0.63260132 1.30390237 0.77195252]
 
     \end{Verbatim}
 
@@ -961,8 +964,8 @@ conferences
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-4.91 ms ± 294 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-2.35 ms ± 123 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+5.22 ms ± 417 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+2.63 ms ± 218 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 
     \end{Verbatim}
 
@@ -972,8 +975,8 @@ conferences
 Pandas is a data analysis library. It is extremely useful for reading,
 processing, combining data
 
-\emph{Resources:} Python for Data Analysis (book - I have a copy)
-Documentation: https://pandas.pydata.org/pandas-docs/stable/
+\emph{Resources:} Python for Data Analysis (book) Documentation:
+https://pandas.pydata.org/pandas-docs/stable/
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}42}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
@@ -987,7 +990,7 @@ Documentation: https://pandas.pydata.org/pandas-docs/stable/
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}42}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0xb211ca860>
+{\color{outcolor}Out[{\color{outcolor}42}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0xb27d35588>
 \end{Verbatim}
             
     \begin{center}
@@ -1060,14 +1063,16 @@ Documentation: https://pandas.pydata.org/pandas-docs/stable/
     \hypertarget{other-useful-libraries}{%
 \subsubsection{Other useful libraries}\label{other-useful-libraries}}
 
-Dask \(-\) For big data / parallel computing (https://dask.org/)
-scikit-learn / sklearn: https://scikit-learn.org/stable/ \(-\) for
-machine learning ++ tensorflow \(-\) also for machine learning,
-developed by Google (https://www.tensorflow.org/) seaborn \(-\) for
-making nice-looking plots quickly, built on matplotlib
-(https://seaborn.pydata.org/) PIL \(-\) for image processing (Scipy also
-has many useful image processing tools) lmfit \(-\) For non-linear least
-squares with constraints (https://lmfit.github.io/lmfit-py/)
+Dask \(-\) For big data / parallel computing (https://dask.org/) xarray
+\(-\) For working with labeled arrays
+(http://xarray.pydata.org/en/stable/) scikit-learn / sklearn:
+https://scikit-learn.org/stable/ \(-\) for machine learning ++
+tensorflow \(-\) also for machine learning, developed by Google
+(https://www.tensorflow.org/) seaborn \(-\) for making nice-looking
+plots quickly, built on matplotlib (https://seaborn.pydata.org/) PIL
+\(-\) for image processing (Scipy also has many useful image processing
+tools) lmfit \(-\) For non-linear least squares with constraints
+(https://lmfit.github.io/lmfit-py/)
 
     \hypertarget{space-physics-modules}{%
 \subsubsection{Space physics modules }\label{space-physics-modules}}
@@ -1086,7 +1091,7 @@ I will present examples from different libraries providing access to
 models originally written in fortran, coordinate conversion, and for
 working with CDF (Common Data Format) files
 
-Finally, I will show some examples from Pytt aka Pyrkeland
+Finally, I will show some examples from Pytt
 
 None of these modules are included with anaconda. You need to download
 and install, and this can be tricky (especially on Windows)
@@ -1105,7 +1110,7 @@ is an example:
          
          \PY{c+c1}{\PYZsh{} load a datafile containing 50Hz magnetic field measurements from Swarm}
          \PY{c+c1}{\PYZsh{} downloaded from swarm\PYZhy{}diss.eo.esa.int}
-         \PY{n}{swarm\PYZus{}B\PYZus{}data} \PY{o}{=} \PY{n}{cdflib}\PY{o}{.}\PY{n}{CDF}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./SW\PYZus{}OPER\PYZus{}MAGA\PYZus{}HR\PYZus{}1B\PYZus{}20150328T000000\PYZus{}20150328T235959\PYZus{}0505\PYZus{}MDR\PYZus{}MAG\PYZus{}HR.cdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{swarm\PYZus{}B\PYZus{}data} \PY{o}{=} \PY{n}{cdflib}\PY{o}{.}\PY{n}{CDF}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./SW\PYZus{}OPER\PYZus{}MAGB\PYZus{}LR\PYZus{}1B\PYZus{}20140424T000000\PYZus{}20140424T235959\PYZus{}0505\PYZus{}MDR\PYZus{}MAG\PYZus{}LR.cdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
          \PY{n}{B\PYZus{}vectors} \PY{o}{=} \PY{n}{swarm\PYZus{}B\PYZus{}data}\PY{o}{.}\PY{n}{varget}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B\PYZus{}NEC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} (has shape N x 3)}
          \PY{n}{B\PYZus{}east} \PY{o}{=} \PY{n}{B\PYZus{}vectors}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} eastward component}
          
@@ -1115,7 +1120,7 @@ is an example:
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}46}]:} [<matplotlib.lines.Line2D at 0xb219e5470>]
+{\color{outcolor}Out[{\color{outcolor}46}]:} [<matplotlib.lines.Line2D at 0xb27a95a20>]
 \end{Verbatim}
             
     \begin{center}
@@ -1180,13 +1185,13 @@ recently published Python forward code, called \emph{chaosmagpy}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 Computing time-dependent internal field up to degree 20.
-Finished in 0.0109999 seconds.
+Finished in 0.0147798 seconds.
 Computing static internal (i.e. small-scale crustal) field up to degree 85.
-Finished in 0.173342 seconds.
+Finished in 0.198507 seconds.
 Computing GSM field up to degree 2.
-Finished in 0.00386203 seconds.
+Finished in 0.00357912 seconds.
 Computing SM field up to degree 2.
-Finished in 0.298668 seconds.
+Finished in 0.341548 seconds.
 north: 14824.6 nT, east: 347.2, vertical: 48976.1 nT
 
     \end{Verbatim}
@@ -1236,14 +1241,33 @@ Temperature at 100 km is 1027.3 K
 Model)}\label{hwm-horizontal-wind-model}}
 
 Empirical model of horizontal neutral winds in the thermosphere. Python
-wrapper is included in \emph{pyglow}
+wrapper is included in \emph{pyhwm2014}
+(https://github.com/rilma/pyHWM14). The Python wrapper has some nice
+looking high level functions to make various profiles and 2D maps etc.,
+but I only demonstrate a call to the basic fortran function.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}50}]:} \PY{k+kn}{from} \PY{n+nn}{pyglow} \PY{k}{import} \PY{n}{hwm}
+{\color{incolor}In [{\color{incolor}50}]:} \PY{k+kn}{from} \PY{n+nn}{pyhwm2014}\PY{n+nn}{.}\PY{n+nn}{hwm14} \PY{k}{import} \PY{n}{hwm14}
          
-         \PY{c+c1}{\PYZsh{} Importing hwm works, but it crashes when I run it}
+         \PY{c+c1}{\PYZsh{} The inputs are mostly the same as for the MSIS example above,}
+         \PY{c+c1}{\PYZsh{} except for ap, which should be a two\PYZhy{}element array\PYZhy{}like object}
+         \PY{c+c1}{\PYZsh{} where the second element is the ap index (the first is not used)}
+         \PY{n}{ap} \PY{o}{=} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} the \PYZhy{}1s are not used, according the Fortran documentation that I found}
+         
+         \PY{n}{wind\PYZus{}north}\PY{p}{,} \PY{n}{wind\PYZus{}east} \PY{o}{=} \PY{n}{hwm14}\PY{p}{(}\PY{n}{iyd}\PY{p}{,} \PY{n}{sec}\PY{p}{,} \PY{n}{alt}\PY{p}{,} \PY{n}{lat}\PY{p}{,} \PY{n}{lon}\PY{p}{,} \PY{n}{stl}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ap}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The wind at }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ km is }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ m/s north}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+si}{\PYZpc{}.1f}\PY{l+s+s1}{ m/s east}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{alt}\PY{p}{,} \PY{n}{wind\PYZus{}north}\PY{p}{,} \PY{n}{wind\PYZus{}east}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The wind at 100 km is 
+-12.0 m/s north
+30.4 m/s east
+
+    \end{Verbatim}
 
     \hypertarget{iri-international-reference-ionosphere}{%
 \subsubsection{IRI (International Reference
@@ -1359,7 +1383,7 @@ Simon Shepherd (2014).
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-The current mlat/MLT in Bergen is 57.0 degrees / 8.8
+The current mlat/MLT in Bergen is 57.0 degrees / 12.0
 
     \end{Verbatim}
 
@@ -1387,8 +1411,13 @@ The current mlat/MLT in Bergen is 57.0 degrees / 8.8
 \end{Verbatim}
 
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+findfont: Font family ['serif'] not found. Falling back to DejaVu Sans.
+
+    \end{Verbatim}
+
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_86_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_86_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1408,17 +1437,16 @@ projects}\label{other-useful-space-physics-python-projects}}
   conversion, and tools for working with Space Weather Modeling
   Framework output
 \item
-  OvationPyme: Python translation of Ovation Prime (I have not been able
-  to run this)
+  OvationPyme: Python translation of Ovation Prime
 \item
   MadrigalWeb: Access data from Madrigal database
 \item
   viresclient: Download Swarm data and evaluate models (including CHAOS,
-  IGRF, AMPS (I think) \ldots{})
+  IGRF, \ldots{})
 \end{itemize}
 
-    \hypertarget{pytt-pyrkeland-dipole}{%
-\subsubsection{Pytt / Pyrkeland / dipole}\label{pytt-pyrkeland-dipole}}
+    \hypertarget{pytt-dipole}{%
+\subsubsection{Pytt / dipole}\label{pytt-dipole}}
 
 Some examples from my own code - Pytt (misc):
 https://github.com/klaundal/pytt (private repository, but I will give
@@ -1532,7 +1560,7 @@ An upward unit vector has radial component 0.9999958 and southward component -0.
     \hypertarget{the-end}{%
 \section{The end}\label{the-end}}
 
-Send me an email to get access to pytt and this notebook on github
+Send me an email to get access to pytt (karl.laundal@uib.no)
 
 
     % Add a bibliography block to the postdoc
