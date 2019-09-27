@@ -7,6 +7,7 @@ The primary file is spacepython.ipynb. This was originally made for a seminar, a
 in a terminal. This will open a browser. Navigate with arrow keys (both horizontal and vertical!)
 
 You can also view it in the normal way, by typing::
+
     jupyter notebook spacepython.ipynb 
 
 in the terminal. If you do this you can also run the code yourself, or edit the notebook. I also included a pdf version. 
